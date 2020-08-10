@@ -16,10 +16,10 @@ class AppsController extends Controller
         //YANG MENARIK ADALAH FUNGSI WITH(), DIMANA FUNGSI INI DISEBUT EAGER LOADING
         //ADAPUN NAMA YANG DISEBUTKAN DIDALAMNYA ADALAH NAMA METHOD YANG DIDEFINISIKAN DIDALAM MODEL CATEGORY
         //METHOD TERSEBUT BERISI FUNGSI RELATIONSHIPS ANTAR TABLE
-        //JIKA LEBIH DARI 1 MAKA DAPAT DIPISAHKAN DENGAN KOMA, 
+        //JIKA LEBIH DARI 1 MAKA DAPAT DIPISAHKAN DENGAN KOMA,
         // CONTOH: with(['parent', 'contoh1', 'contoh2'])
         $apps = Apps::orderBy('created_at', 'DESC')->first();
-      
+
         //LOAD VIEW DARI FOLDER CATEGORIES, DAN DIDALAMNYA ADA FILE INDEX.BLADE.PHP
         //KEMUDIAN PASSING DATA DARI VARIABLE $category & $parent KE VIEW AGAR DAPAT DIGUNAKAN PADA VIEW TERKAIT
         return view('apps.index', compact('apps'));
@@ -31,7 +31,7 @@ class AppsController extends Controller
         $this->validate($request, [
             'name'          => 'required|string|max:100',
             'desc'          => 'required',
-            'image_login'   => 'nullable|image|mimes:png,jpeg,jpg', //IMAGE BISA NULLABLE
+            'image_login'   => 'nullable|image|mimes:png,jpeg,jpg,gif', //IMAGE BISA NULLABLE
             'image_header'  => 'nullable|image|mimes:png,jpeg,jpg', //IMAGE BISA NULLABLE
             'image_icon'    => 'nullable|image|mimes:png,jpeg,jpg', //IMAGE BISA NULLABLE
         ]);
@@ -40,7 +40,7 @@ class AppsController extends Controller
         $image_login    = $apps->image_login; //SIMPAN SEMENTARA NAMA FILE IMAGE SAAT INI
         $image_header   = $apps->image_header; //SIMPAN SEMENTARA NAMA FILE IMAGE SAAT INI
         $image_icon     = $apps->image_icon; //SIMPAN SEMENTARA NAMA FILE IMAGE SAAT INI
-    
+
         //JIKA ADA FILE GAMBAR YANG DIKIRIM IMAGE LOGIN
         if ($request->hasFile('image_login')) {
             $file = $request->file('image_login');

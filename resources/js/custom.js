@@ -53,10 +53,19 @@ function number_format(nStr)
     return x1 + x2;
 }
 
+function IsEmail(email) {
+    var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if(!regex.test(email)) {
+       return false;
+    }else{
+       return true;
+    }
+  }
 // deklarasi function
 window.pad              = pad;
 window.fileCheck        = fileCheck;
 window.number_format    = number_format;
+window.IsEmail          = IsEmail;
 
 // COMPONENT
 $('.number').number(true, 2);
@@ -74,4 +83,17 @@ $('#detailList').on('shown.bs.collapse', function() {
 
 $('#detailList').on('hidden.bs.collapse', function() {
     $(".iconDrop").addClass('fa-angle-down').removeClass('fa-angle-up');
-  });
+});
+
+// Jquery Validate min value
+$.validator.addMethod('minStrict', function (value, el, param) {
+    return value > param;
+});
+
+$.validator.addMethod('maxStrict', function (value, el, param) {
+    console.log(value);
+    console.log(param);
+    return value <= param;
+});
+
+

@@ -8,7 +8,6 @@ use App\User;
 use Spatie\Permission\Models\Permission;
 use DB;
 use DataTables;
-use App\MasterBranch;
 
 class UserController extends Controller
 {
@@ -22,9 +21,8 @@ class UserController extends Controller
 
     public function create()
     {
-        $branch     = MasterBranch::select(DB::raw('concat(code, " - ", name) as code_name'), 'id', 'code')->pluck('code_name', 'code');
         $roles      = Role::orderBy('name', 'ASC')->get();
-        return view('users.create', compact('roles','branch'));
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -40,7 +38,7 @@ class UserController extends Controller
             'username'  => 'required|unique:users',
             'password'  => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
             'role'      => 'required|string|exists:roles,name'
-        ]); // Validation  Rules 
+        ]); // Validation  Rules
 
         $user = User::firstOrCreate([
             'email'     => $request->email,
@@ -58,9 +56,8 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $branch     = MasterBranch::select(DB::raw('concat(code, " - ", name) as code_name'), 'id', 'code')->pluck('code_name', 'code');
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user','branch'));
+        return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -103,26 +100,26 @@ class UserController extends Controller
     public function rolePermission(Request $request)
     {
         $role = $request->get('role');
-        
+
         //Default, set dua buah variable dengan nilai null
         $permissions = null;
         $hasPermission = null;
-        
+
         //Mengambil data role
         $roles = Role::all()->pluck('name');
-        
+
         //apabila parameter role terpenuhi
         if (!empty($role)) {
             //select role berdasarkan namenya, ini sejenis dengan method find()
             $getRole = Role::findByName($role);
             // dd($getRole);
-            
+
             //Query untuk mengambil permission yang telah dimiliki oleh role terkait
             $hasPermission = DB::table('role_has_permissions')
                 ->select('permissions.name')
                 ->join('permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
                 ->where('role_id', $getRole->id)->get()->pluck('name')->all();
-            
+
             // if($getRole->id == '99'){
             //     $permissions = Permission::whereNotIn('id', [2,3,4,5])->pluck('name');
             // }else{
@@ -138,7 +135,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|unique:permissions'
         ]);
-    
+
         $permission = Permission::firstOrCreate([
             'name' => $request->name
         ]);
@@ -149,7 +146,7 @@ class UserController extends Controller
     {
         //select role berdasarkan namanya
         $role = Role::findByName($role);
-        
+
         //fungsi syncPermission akan menghapus semua permissio yg dimiliki role tersebut
         //kemudian di-assign kembali sehingga tidak terjadi duplicate data
         $role->syncPermissions($request->permission);
@@ -168,7 +165,7 @@ class UserController extends Controller
         $this->validate($request, [
             'role' => 'required'
         ]);
-    
+
         $user = User::findOrFail($id);
         //menggunakan syncRoles agar terlebih dahulu menghapus semua role yang dimiliki
         //kemudian di-set kembali agar tidak terjadi duplicate

@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $appSetting = Apps::orderBy('created_at', 'DESC')->first();
 
-        // DEFINE FORM 
+        // DEFINE FORM
         // array 1 : label
         // array 2 : nama & id
         // array 3 : value isinya
@@ -39,13 +39,14 @@ class AppServiceProvider extends ServiceProvider
         // array 5 : attribute
         Form::component('inputText', 'components.form.text',                ['label', 'name', 'value' => null, 'class',  'attributes' => []]);
         Form::component('inputTextRow', 'components.form.textRow',          ['label', 'name', 'value' => null, 'class',  'attributes' => []]);
+        Form::component('inputTextRowRw', 'components.form.textRowRw',          ['label', 'name', 'value' => null, 'class',  'attributes' => []]);
         Form::component('inputTextarea', 'components.form.textarea',        ['label', 'name', 'value' => null, 'class',  'attributes' => []]);
         Form::component('inputTextareaRow', 'components.form.textareaRow',  ['label', 'name', 'value' => null, 'class',  'attributes' => []]);
         Form::component('inputNumber', 'components.form.number',            ['label', 'name', 'value' => null, 'class',  'attributes' => []]);
 
         Form::component('inputSelect', 'components.form.select',            ['label', 'name', 'value' => [],  'class', 'attributes' => [], 'default' => null]);
         Form::component('inputSelectRow', 'components.form.selectRow',            ['label', 'name', 'value' => [],  'class', 'attributes' => [], 'default' => null]);
-        
+
         // DEFINE CARD
         Blade::component('components.card', 'card');
 
@@ -53,5 +54,5 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('appSetting', $appSetting);
     }
-    
+
 }

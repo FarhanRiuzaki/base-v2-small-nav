@@ -19,6 +19,7 @@
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('select2/dist/css/select2.css') }}" rel="stylesheet" />
+
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     <!-- ============================================================== -->
@@ -41,6 +42,7 @@
 
         <!-- SIDEBAR JUGA KITA PISAHKAN CODENYA MENJADI FILE TERSENDIRI -->
         <!-- KETIKA MELOAD FILE BLADE, MAKA EKSTENSI .BLADE.PHP TIDAK PERLU DITULISKAN -->
+
         @include('layouts.module.sidebar')
 
         <div class="page-wrapper">
@@ -76,6 +78,10 @@
 
     <script src="{{ asset('js/custom.js') }}"></script>
     <script>
+
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         // START DYNAMIS TEMA
         $(function () {
             document.documentElement.setAttribute('theme', '{{  $appSetting->theme }}');

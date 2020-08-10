@@ -33,7 +33,7 @@
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="">Nama</label>
-                    <input type="text" name="name" 
+                    <input type="text" name="name"
                         value="{{ $user->name }}"
                         class="form-control {{ isValid($errors->has('name')) }}" required>
                     <p class="invalid-feedback">{{ $errors->first('name') }}</p>
@@ -47,15 +47,15 @@
                 </div>
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" name="email" 
+                    <input type="email" name="email"
                         value="{{ $user->email }}"
-                        class="form-control {{ isValid($errors->has('email')) }}" 
+                        class="form-control {{ isValid($errors->has('email')) }}"
                         required readonly>
                     <p class="invalid-feedback">{{ $errors->first('email') }}</p>
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" name="password" 
+                    <input type="password" name="password"
                         class="form-control {{ isValid($errors->has('password')) }}">
                     <p class="invalid-feedback">
                         @if ($errors->first('password'))
@@ -65,7 +65,6 @@
                     </p>
                     <p class="text-warning">Biarkan kosong, jika tidak ingin mengganti password</p>
                 </div>
-                {{ Form::inputSelect('Cabang', 'branch', $branch, null,[],$user->branch) }}
 
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="customCheck1" name="status" {{ $user->status == '1' ? 'checked' : '' }}>

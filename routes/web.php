@@ -72,99 +72,20 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function() {
         });
     });
 
-    Route::group(['middleware' => ['role:Admin|super-admin|User|Counter|Trade-maker|Trade-approver']], function () {
+    //Route yang berada dalam group ini hanya dapat diakses oleh super-admin
+    Route::group(['middleware' => ['role:super-admin']], function () {
         // MASTER
         Route::group(['middleware' => ['permission:master']], function() {
-
             //FLAG
             Route::resource('flag', 'MasterFlagController');
-            // CURRENCY
-            Route::resource('currency', 'MasterCurrencyController');
-            // BRANCH CABANG
-            Route::resource('branch', 'MasterBranchController');
-            // Document Parameters
-            Route::resource('documentParameter', 'MasterDocumentParametersController');
-            // Product
-            Route::resource('product', 'MasterProductController');
         });
 
-        // FACILITY
-        Route::group(['middleware' => ['permission:facility-maker']], function() {
-            //FACILITY
-            Route::resource('facility', 'Facility\FacilityController');
-        });
-        //APPROVE FACILITY
-        Route::group(['middleware' => ['permission:facility-approve']], function() {
-            Route::resource('approveFacility', 'Facility\ApproveFacilityController');
+        Route::group(['middleware' => ['permission:report-show']], function() {
+            //TREASURY
+            Route::get('/report/excel', 'ReportController@laporanExcel')->name('report.excel');
+            Route::resource('report', 'ReportController');
         });
 
-        // ADVISE MAKER
-        Route::group(['middleware' => ['permission:advise-maker']], function() {
-            //Summary
-            Route::get('/transactions/list', 'Advise\TransactionController@list')->name('transactions.list');
-            Route::resource('transactions', 'Advise\TransactionController');
-        });
-        // ADVISE APPROVE
-        Route::group(['middleware' => ['permission:advise-approve']], function() {
-            Route::resource('approverAdvise', 'Advise\ApproverAdviseController');
-
-        });
-
-         // AMENDMENT MAKER
-        Route::group(['middleware' => ['permission:amendment-maker']], function() {
-            Route::resource('amend', 'Amendment\AmendController');
-        });
-        // AMENDMENT APPROVE
-        Route::group(['middleware' => ['permission:amendment-approve']], function() {
-            Route::resource('approveAmend', 'Amendment\ApproveAmendController');
-        });
-
-        // DOCUMENT
-        Route::group(['middleware' => ['permission:document-maker']], function() {
-            // Upload Document
-            Route::get('/uploadDocument/sor-list/{id}', 'Document\UploadDocumentController@sorList')->name('uploadDocument.sorList');
-            Route::resource('uploadDocument', 'Document\UploadDocumentController');
-        });
-
-        // UJI DOCUMENT MAKER
-        Route::group(['middleware' => ['permission:uji-document-maker']], function() {
-            Route::get('/ujiDocument/sor-list/{id}', 'Uji\UjiDocumentController@sorList')->name('ujiDocument.sorList');
-            Route::resource('ujiDocument', 'Uji\UjiDocumentController');
-        });
-        // UJI DOCUMENT APPROVE
-        Route::group(['middleware' => ['permission:uji-document-approve']], function() {
-            Route::post('/approverUji/upload-document/', 'Uji\ApproverUjiController@storeDocument')->name('approverUji.storeDocument');
-            Route::get('/approverUji/upload-document/{id}', 'Uji\ApproverUjiController@uploadDocument')->name('approverUji.uploadDocument');
-            Route::get('/approverUji/view-document/{id}', 'Uji\ApproverUjiController@viewDocument')->name('approverUji.viewDocument');
-            Route::get('/approverUji/sor-list/{id}', 'Uji\ApproverUjiController@sorList')->name('approverUji.sorList');
-            Route::resource('approverUji', 'Uji\ApproverUjiController');
-        });
-
-        // TRANSACTION MAKER
-        Route::group(['middleware' => ['permission:transaction-maker']], function() {
-            Route::get('/trx/sor-list/{id}', 'Transactions\TrxController@sorList')->name('trx.sorList');
-            Route::get('/trx/sor-list/trx-list/{id}', 'Transactions\TrxController@trxList')->name('trx.trxList');
-            Route::resource('trx', 'Transactions\TrxController');
-        });
-        // TRANSACTION APPROVE
-        Route::group(['middleware' => ['permission:transaction-approve']], function() {
-            Route::get('/approve-trx/sor-list/{id}', 'Transactions\ApproveTrxController@sorList')->name('approveTrx.sorList');
-            Route::get('/approve-trx/sor-list/trx-list/{id}', 'Transactions\ApproveTrxController@trxList')->name('approveTrx.trxList');
-            Route::resource('approveTrx', 'Transactions\ApproveTrxController');
-        });
-
-        // REPORT
-        Route::group(['middleware' => ['permission:report']], function() {
-
-            // Status
-            Route::get('/reportStatus/show-sor/trx-list/{id}', 'Report\ReportStatusController@trxList')->name('reportStatus.trxList');
-            Route::get('/reportStatus/show-sor/trx-list/show-trx/{id}', 'Report\ReportStatusController@showTrx')->name('reportStatus.showTrx');
-            Route::get('/reportStatus/show-sor/{id}', 'Report\ReportStatusController@showSor')->name('reportStatus.showSor');
-            Route::resource('reportStatus', 'Report\ReportStatusController');
-
-            //SLA
-            Route::resource('reportSla', 'Report\ReportSlaController');
-        });
     });
 
 // SETTING User

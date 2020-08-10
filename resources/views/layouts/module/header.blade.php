@@ -19,7 +19,7 @@
                     <!--End Logo icon -->
                     <!-- Logo text -->
                     <span class="logo-text">
-                        <img src="{{asset('storage/images/' . $appSetting->image_header)}}" alt="homepage" class="dark-logo" style="height:50px" />
+                        <img src="{{asset('storage/images/' . $appSetting->image_header)}}" alt="homepage" class="dark-logo" style="width:50px" />
                         <!-- Light Logo icon -->
                         <img src="{{asset('storage/images/' . $appSetting->image_header)}}" alt="homepage" class="light-logo" style="height:50px"/>
                         <!-- dark Logo text -->
@@ -49,79 +49,11 @@
             <!-- ============================================================== -->
             <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
                 <!-- Notification -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
-                        id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        <span><i data-feather="bell" class="svg-icon"></i></span>
-                        <span class="badge badge-primary notify-no rounded-circle">5</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
-                        <ul class="list-style-none">
-                            <li>
-                                <div class="message-center notifications position-relative">
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <div class="btn btn-danger rounded-circle btn-circle"><i
-                                                data-feather="airplay" class="text-white"></i></div>
-                                        <div class="w-75 d-inline-block v-middle pl-2">
-                                            <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
-                                            <span class="font-12 text-nowrap d-block text-muted">Just see
-                                                the my new
-                                                admin!</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <span class="btn btn-success text-white rounded-circle btn-circle"><i
-                                                data-feather="calendar" class="text-white"></i></span>
-                                        <div class="w-75 d-inline-block v-middle pl-2">
-                                            <h6 class="message-title mb-0 mt-1">Event today</h6>
-                                            <span
-                                                class="font-12 text-nowrap d-block text-muted text-truncate">Just
-                                                a reminder that you have event</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <span class="btn btn-info rounded-circle btn-circle"><i
-                                                data-feather="settings" class="text-white"></i></span>
-                                        <div class="w-75 d-inline-block v-middle pl-2">
-                                            <h6 class="message-title mb-0 mt-1">Settings</h6>
-                                            <span
-                                                class="font-12 text-nowrap d-block text-muted text-truncate">You
-                                                can customize this template
-                                                as you want</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:08 AM</span>
-                                        </div>
-                                    </a>
-                                    <!-- Message -->
-                                    <a href="javascript:void(0)"
-                                        class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                        <span class="btn btn-primary rounded-circle btn-circle"><i
-                                                data-feather="box" class="text-white"></i></span>
-                                        <div class="w-75 d-inline-block v-middle pl-2">
-                                            <h6 class="message-title mb-0 mt-1">Pavan kumar</h6> <span
-                                                class="font-12 text-nowrap d-block text-muted">Just
-                                                see the my admin!</span>
-                                            <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
-                                    <strong>Check all notifications</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </li>
-                        </ul>
+                <li class="nav-item">
+                    <div class="bg-warning" style="margin-top: 1.5px;">
+                        <marquee behavior="" direction="">WARNING: Penempatan Surat Berharga / Rekening BI = 67,04% !</marquee>
                     </div>
+                    {{-- <h4 class="text-center bg-warning">WARNING: Penempatan Surat Berharga / Rekening BI = 67,04%</h4> --}}
                 </li>
                 <!-- End Notification -->
                 <!-- ============================================================== -->
@@ -161,7 +93,7 @@
                 <!-- Search -->
                 <!-- ============================================================== -->
                 <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="javascript:void(0)">
+                    {{-- <a class="nav-link" href="javascript:void(0)">
                         <form>
                             <div class="customize-input">
                                 <input class="form-control custom-shadow custom-radius border-0 bg-white"
@@ -169,7 +101,7 @@
                                 <i class="form-control-icon" data-feather="search"></i>
                             </div>
                         </form>
-                    </a>
+                    </a> --}}
                 </li>
                 <!-- ============================================================== -->
                 <!-- User profile and search -->
@@ -178,10 +110,10 @@
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="ml-2 d-none d-lg-inline-block" style="margin-right: 10px">
-                            <span>Hello,</span> 
+                            <span>Hello,</span>
                             <span class="text-dark">
                                 {{ ucwords(Auth::user()->name)}}
-                            </span> 
+                            </span>
                             {{-- <i data-feather="chevron-down" class="svg-icon"></i> --}}
                         </span>
                         <img src="{{asset('webpack/img/avatar.png')}}" alt="user" class="rounded-circle shadow-md" height="40px">
@@ -199,12 +131,22 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a id="light" class="dropdown-item" href="javascript:void(0)">
-                                    <i class="fas fa-sun svg-icon mr-2 ml-1"></i>
+                                    {{-- <i class="fas fa-sun svg-icon mr-2 ml-1"> --}}
+                                    <i class="svg-icon mr-2 ml-1">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sun" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M3.5 8a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0z"/>
+                                            <path fill-rule="evenodd" d="M8.202.28a.25.25 0 0 0-.404 0l-.91 1.255a.25.25 0 0 1-.334.067L5.232.79a.25.25 0 0 0-.374.155l-.36 1.508a.25.25 0 0 1-.282.19l-1.532-.245a.25.25 0 0 0-.286.286l.244 1.532a.25.25 0 0 1-.189.282l-1.509.36a.25.25 0 0 0-.154.374l.812 1.322a.25.25 0 0 1-.067.333l-1.256.91a.25.25 0 0 0 0 .405l1.256.91a.25.25 0 0 1 .067.334L.79 10.768a.25.25 0 0 0 .154.374l1.51.36a.25.25 0 0 1 .188.282l-.244 1.532a.25.25 0 0 0 .286.286l1.532-.244a.25.25 0 0 1 .282.189l.36 1.508a.25.25 0 0 0 .374.155l1.322-.812a.25.25 0 0 1 .333.067l.91 1.256a.25.25 0 0 0 .405 0l.91-1.256a.25.25 0 0 1 .334-.067l1.322.812a.25.25 0 0 0 .374-.155l.36-1.508a.25.25 0 0 1 .282-.19l1.532.245a.25.25 0 0 0 .286-.286l-.244-1.532a.25.25 0 0 1 .189-.282l1.508-.36a.25.25 0 0 0 .155-.374l-.812-1.322a.25.25 0 0 1 .067-.333l1.256-.91a.25.25 0 0 0 0-.405l-1.256-.91a.25.25 0 0 1-.067-.334l.812-1.322a.25.25 0 0 0-.155-.374l-1.508-.36a.25.25 0 0 1-.19-.282l.245-1.532a.25.25 0 0 0-.286-.286l-1.532.244a.25.25 0 0 1-.282-.189l-.36-1.508a.25.25 0 0 0-.374-.155l-1.322.812a.25.25 0 0 1-.333-.067L8.203.28zM8 2.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11z"/>
+                                          </svg>
+                                    </i>
                                 Light</a>
                             </div>
                             <div class="col-md-6">
                                 <a id="dark" class="dropdown-item" href="javascript:void(0)">
-                                    <i class="far fa-moon svg-icon mr-2 ml-1"></i>
+                                    {{-- <i class="far fa-moon svg-icon mr-2 ml-1"></i> --}}
+                                    <i class="svg-icon mr-2 ml-1"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-moon" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z"/>
+                                      </svg>
+                                    </i>
                                 Dark</a>
                             </div>
                         </div>

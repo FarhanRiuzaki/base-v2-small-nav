@@ -7,7 +7,7 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    
+
     @yield('title')
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -25,7 +25,19 @@
                 <div class="lds-pos"></div>
             </div>
         </div>
-        @yield('content')
+        @php
+            $ua = htmlentities($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
+        @endphp
+        @if (preg_match('~MSIE|Internet Explorer~i', $ua) || (strpos($ua, 'Trident/7.0') !== false && strpos($ua, 'rv:11.0') !== false))
+            <div style="text-align: center;">
+                <div style="margin: 0 auto; margin-top: 5%">
+                    <img src="{{asset('images/not-suport.png')}}" alt="" srcset="" style="width: 30%">
+                    <h3>You are using IE browser, please use another browser</h3>
+                </div>
+            </div>
+        @else
+            @yield('content')
+        @endif
 
     </div>
 

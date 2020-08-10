@@ -54,7 +54,6 @@
                         {{-- {{ $errors->first('password') }} --}}
                     </p>
                 </div>
-                {{ Form::inputSelect('Cabang', 'branch', $branch) }}
 
                 <div class="form-group">
                     <label for="">Role</label>
